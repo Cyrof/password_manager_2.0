@@ -74,3 +74,4 @@ if __name__ == "__main__":
     
     print("Master key already exists")
     print("do stuff")
+    print("do other stuff")
