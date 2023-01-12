@@ -10,3 +10,5 @@ if platform.system() == "Windows":
 elif platform.system() == "Linux":
     os.system("source ./psv2/bin/activate")
 
+time.sleep(1)
+os.system("pip install -r requirements.txt")
