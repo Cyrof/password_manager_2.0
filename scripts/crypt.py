@@ -73,3 +73,5 @@ if __name__ == "__main__":
     c.generate_master('hello')
     print("Master")
     print("Master key")
+
+    print("hello")
