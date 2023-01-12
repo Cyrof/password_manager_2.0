@@ -71,4 +71,4 @@ class Crypto:
 if __name__ == "__main__":
     c = Crypto()
     c.generate_master('hello')
-    
+    print("key")
