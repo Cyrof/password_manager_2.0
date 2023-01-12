@@ -4,6 +4,7 @@ from cryptography.fernet import Fernet
 from dotenv import load_dotenv, set_key, get_key, unset_key
 import os
 import hashlib
+from logger import Log
 
 class Crypto:
     # class crypto to handle encryption and decryption
@@ -14,6 +15,7 @@ class Crypto:
         self.check_env()
         self.__envpath = os.path.abspath('psv2.env')
         load_dotenv(self.__envpath)     
+        self.__logger = Log()
 
     def check_env(self):
         """create env file if not exists
@@ -44,6 +46,7 @@ class Crypto:
             key_str = str(key, "utf-8")
             os.environ['KEY'] = key_str
             set_key(self.__envpath, 'KEY', key_str)  
+            self.__logger.add_info("Key generated")
 
     def check_master(self):
         """ function to check if master key exists
@@ -65,8 +68,10 @@ class Crypto:
             sha256_mp = hashlib.sha256(master_password.encode()).hexdigest() 
             os.environ['MASTER'] = sha256_mp
             set_key(self.__envpath, 'MASTER', sha256_mp)
+            self.__logger.add_info("Master key generated")
         else:
             print("Master key already exists")
+            self.__logger.add_warning("Master key already exists")
     
     def check_master_password(self, password):
         """ function to check if master password is the same as master hash 
@@ -91,15 +96,42 @@ class Crypto:
             unset_key(self.__envpath, 'KEY')
             unset_key(self.__envpath, 'MASTER')
             print('Dotenv cleared')
+            self.__logger.add_info("Dotenv cleared")
         except Exception as e:
             print(e)
+            self.__logger.add_error(e)
     
+    def get_key(self):
+        """ Get key from dotenv file
+        :param:
+        :return: master key
+        """
+        if self.check_key():
+            key = bytes(os.getenv('KEY'), 'utf-8')
+            self.__logger.add_info("returning master key")
+            return key
+        else:
+            self.__logger.add_error("key not found in dotenv")
+            return None
+    
+    def encrypt(self, data):
+        """ function to encrypt data
+        :param data: data to encrypt
+        :return: encrypted data
+        """
+        key = self.get_key()
+        if key is not None:
+            fernet = Fernet(key)
+            encode_text = data.encode()
+            encrypt_text = fernet.encrypt(encode_text)
+            self.__logger.add_info("return encrypted text")
+            return encrypt_text
+        else:
+            self.__logger.add_warning("No key found raised")
+            raise "No key found"
+            
         
 
 if __name__ == "__main__":
     c = Crypto()
-    c.generate_master('hello')
-    
-    print("Master key already exists")
-    print("do stuff")
-    print("do other stuff")
+    c.clear_dotenv()
