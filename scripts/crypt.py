@@ -101,9 +101,37 @@ class Crypto:
             print(e)
             self.__logger.add_error(e)
     
+    def get_key(self):
+        """ Get key from dotenv file
+        :param:
+        :return: master key
+        """
+        if self.check_key():
+            key = bytes(os.getenv('KEY'), 'utf-8')
+            self.__logger.add_info("returning master key")
+            return key
+        else:
+            self.__logger.add_error("key not found in dotenv")
+            return None
+    
+    def encrypt(self, data):
+        """ function to encrypt data
+        :param data: data to encrypt
+        :return: encrypted data
+        """
+        key = self.get_key()
+        if key is not None:
+            fernet = Fernet(key)
+            encode_text = data.encode()
+            encrypt_text = fernet.encrypt(encode_text)
+            self.__logger.add_info("return encrypted text")
+            return encrypt_text
+        else:
+            self.__logger.add_warning("No key found raised")
+            raise "No key found"
+            
         
 
 if __name__ == "__main__":
     c = Crypto()
-    c.generate_master('hello')
-    c.generate_key()
+    c.clear_dotenv()
