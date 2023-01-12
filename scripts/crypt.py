@@ -73,3 +73,4 @@ if __name__ == "__main__":
     c.generate_master('hello')
     
     print("Master key already exists")
+    print("do stuff")
