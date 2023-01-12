@@ -67,6 +67,34 @@ class Crypto:
             set_key(self.__envpath, 'MASTER', sha256_mp)
         else:
             print("Master key already exists")
+    
+    def check_master_password(self, password):
+        """ function to check if master password is the same as master hash 
+        :param password: master password for the program
+        :return: true if master password else false
+        """
+        hash = os.getenv('MASTER')
+        ps_hash = hashlib.sha256(password.encode()).hexdigest()
+        if ps_hash == hash:
+            return True
+        else:
+            return False
+    
+    def clear_dotenv(self):
+        """ function to clear dotenv file (Testing only)
+        :param:
+        :return: 
+        """
+        try:
+            os.unsetenv("KEY")
+            os.unsetenv("MASTER")
+            unset_key(self.__envpath, 'KEY')
+            unset_key(self.__envpath, 'MASTER')
+            print('Dotenv cleared')
+        except Exception as e:
+            print(e)
+    
+        
 
 if __name__ == "__main__":
     c = Crypto()
