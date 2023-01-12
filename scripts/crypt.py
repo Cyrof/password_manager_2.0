@@ -128,8 +128,23 @@ class Crypto:
             return encrypt_text
         else:
             self.__logger.add_warning("No key found raised")
-            raise "No key found"
-            
+            print("No key found")
+    
+    def decrypt(self, data):
+        """ function to decrypt data
+        :param data: data to decrypt
+        :return: decrypted data
+        """
+        key = self.get_key()
+        if key is not None:
+            fernet = Fernet(key)
+            decrypt_text = fernet.decrypt(data)
+            text = decrypt_text.decode()
+            self.__logger.add_info("return decrypted text")
+            return text
+        else:
+            self.__logger.add_warning("No key found raised")
+            print("No key found")
         
 
 if __name__ == "__main__":
