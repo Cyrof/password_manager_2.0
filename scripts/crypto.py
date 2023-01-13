@@ -46,7 +46,7 @@ class Cryptography:
             key_str = str(key, "utf-8")
             os.environ['KEY'] = key_str
             set_key(self.__envpath, 'KEY', key_str)  
-            self.__logger.add_info("Key generated")
+            self.__logger.add_info("Key generated @49-crypto.py")
 
     def check_master(self):
         """ function to check if master key exists
@@ -68,10 +68,10 @@ class Cryptography:
             sha256_mp = hashlib.sha256(master_password.encode()).hexdigest() 
             os.environ['MASTER'] = sha256_mp
             set_key(self.__envpath, 'MASTER', sha256_mp)
-            self.__logger.add_info("Master key generated")
+            self.__logger.add_info("Master key generated @71-crypto.py")
         else:
             print("Master key already exists")
-            self.__logger.add_warning("Master key already exists")
+            self.__logger.add_warning("Master key already exists @74-crypto.py")
     
     def check_master_password(self, password):
         """ function to check if master password is the same as master hash 
@@ -96,7 +96,7 @@ class Cryptography:
             unset_key(self.__envpath, 'KEY')
             unset_key(self.__envpath, 'MASTER')
             print('Dotenv cleared')
-            self.__logger.add_info("Dotenv cleared")
+            self.__logger.add_info("Dotenv cleared @99-crypto.py")
         except Exception as e:
             print(e)
             self.__logger.add_error(e)
@@ -108,10 +108,10 @@ class Cryptography:
         """
         if self.check_key():
             key = bytes(os.getenv('KEY'), 'utf-8')
-            self.__logger.add_info("returning master key")
+            self.__logger.add_info("returning master key @111-crypto.py")
             return key
         else:
-            self.__logger.add_error("key not found in dotenv")
+            self.__logger.add_error("key not found in dotenv @114-crypto.py")
             return None
     
     def encrypt(self, data):
@@ -124,10 +124,10 @@ class Cryptography:
             fernet = Fernet(key)
             encode_text = data.encode()
             encrypt_text = fernet.encrypt(encode_text)
-            self.__logger.add_info("return encrypted text")
+            self.__logger.add_info("return encrypted text @127-crypto.py")
             return encrypt_text
         else:
-            self.__logger.add_warning("No key found raised")
+            self.__logger.add_warning("No key found raised @130-crypto.py")
             print("No key found")
     
     def decrypt(self, data):
@@ -140,13 +140,13 @@ class Cryptography:
             fernet = Fernet(key)
             decrypt_text = fernet.decrypt(data)
             text = decrypt_text.decode()
-            self.__logger.add_info("return decrypted text")
+            self.__logger.add_info("return decrypted text @143-crypto.py")
             return text
         else:
-            self.__logger.add_warning("No key found raised")
+            self.__logger.add_warning("No key found raised @146-crypto.py")
             print("No key found")
         
 
 if __name__ == "__main__":
-    c = Crypto()
+    c = Cryptography()
     c.clear_dotenv()
