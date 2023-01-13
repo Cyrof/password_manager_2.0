@@ -12,6 +12,8 @@ create_table = """ CREATE TABLE IF NOT EXISTS psv2 (
 );"""
 
 # Database class
+
+
 class Database:
 
     def __init__(self):
@@ -27,8 +29,8 @@ class Database:
             self.create_table(self.__conn, create_table)
         else:
             print("Error! cannot connect to database")
-            self.__logger.add_error("Error! cannot connect to database")
-    
+            self.__logger.add_error("Error! cannot connect to database @32-db.py")
+
     def create_connection(self, path=None):
         """ function create a connection to the database
         :param path: path of the database else default None
@@ -37,14 +39,15 @@ class Database:
         conn = None
         try:
             conn = sqlite3.connect(path)
-            self.__logger.add_info('connection to database successfully created returning connection')
+            self.__logger.add_info(
+                'connection to database successfully created returning connection @43-db.py')
             return conn
         except Exception as e:
             self.__logger.add_error(e)
             print(e)
-        
+
         return conn
-    
+
     def create_table(self, conn, query_string):
         """ function create a table
         :param conn: connection to the database
@@ -54,11 +57,11 @@ class Database:
         try:
             cur = conn.cursor()
             cur.execute(query_string)
-            self.__logger.add_info('table successfully created')
+            self.__logger.add_info('table successfully created @60-db.py')
         except Exception as e:
             self.__logger.add_error(e)
             print(e)
-        
+
     def insert_data(self, service, uname, ps):
         """ function to insert data to the database
         :param service: service name 
@@ -71,17 +74,16 @@ class Database:
             insert_query = """ INSERT INTO psv2 (
                 service_name, username, password) VALUES (?, ?, ?);
                 """
-            
+
             data_tuple = (service, uname, ps)
             cur.execute(insert_query, data_tuple)
             self.__conn.commit()
             print('Data added to database successfully')
-            self.__logger.add_info("data added to database successfully")
+            self.__logger.add_info("data added to database successfully @82-db.py")
         except Exception as e:
             print(e)
             self.__logger.add_error(e)
-        
-    
+
     def delete_all(self):
         """ function to delete all data in the database
         :param:
@@ -95,11 +97,11 @@ class Database:
             cur.execute(sql_query2)
             self.__conn.commit()
             print('All data deleted successfully')
-            self.__logger.add_info("All data deleted successfully")
+            self.__logger.add_info("All data deleted successfully @100-db.py")
         except Exception as e:
             print(e)
             self.__logger.add_error(e)
-    
+
     def delete_table(self):
         """ function to delete table
         :param:
@@ -111,11 +113,11 @@ class Database:
             cur.execute(sql_query)
             self.__conn.commit()
             print('Table deleted successfully')
-            self.__logger.add_info("Table deleted successfully")
+            self.__logger.add_info("Table deleted successfully @116-db.py")
         except Exception as e:
             print(e)
             self.__logger.add_error(e)
-    
+
     def get_all_data(self):
         """ function to get all data
         :param:
@@ -127,7 +129,7 @@ class Database:
             cur.execute(sql_query)
             rows = cur.fetchall()
             data = [[data for data in row] for row in rows]
-            self.__logger.add_info("All data retrieved successfully")
+            self.__logger.add_info("All data retrieved successfully @132-db.py")
             return data
         except Exception as e:
             print(e)
@@ -144,14 +146,14 @@ class Database:
             cur = self.__conn.cursor()
             cur.execute(sql_query, (id,))
             data = cur.fetchall()
-            self.__logger.add_info('Data retrieved successfully')
+            self.__logger.add_info('Data retrieved successfully @149-db.py')
             return data
         except Exception as e:
             print('Failed to get data')
             print(e)
             self.__logger.add_error(e)
             return None
-    
+
     def update_data(self, **kwargs):
         """ function to update data
         :param kwargs: keyword arguments
@@ -159,20 +161,21 @@ class Database:
         """
         try:
             if kwargs['data']:
-                    update_query = """ UPDATE psv2 SET service_name=?, username=?, password=? WHERE id=?"""
-                    data_tuple = (kwargs['data'][1], kwargs['data'][2], kwargs['data'][3], kwargs['data'][0])
+                update_query = """ UPDATE psv2 SET service_name=?, username=?, password=? WHERE id=?"""
+                data_tuple = (kwargs['data'][1], kwargs['data']
+                              [2], kwargs['data'][3], kwargs['data'][0])
 
-                    cur = self.__conn.cursor()
-                    cur.execute(update_query, data_tuple)
-                    self.__conn.commit()
-                    print("Data updated successfully")
-                    self.__logger.add_info('Data updated successfully')
+                cur = self.__conn.cursor()
+                cur.execute(update_query, data_tuple)
+                self.__conn.commit()
+                print("Data updated successfully")
+                self.__logger.add_info('Data updated successfully @172-db.py')
         except Exception as e:
             print('Failed to update')
             print(e)
             self.__logger.add_error(e)
             return None
-        
+
     def delete_by_id(self, **kwargs):
         """ function to delete data by id
         :param kwargs: keyword arguments
@@ -185,14 +188,13 @@ class Database:
                 cur = self.__conn.cursor()
                 cur.execute(delete_by_id, (kwargs['id'],))
                 self.__conn.commit()
-                print('Data deleted successfully') 
-                self.__logger.add_info('Data deleted successfully')
+                print('Data deleted successfully')
+                self.__logger.add_info('Data deleted successfully @-db.py')
         except Exception as e:
-            print('Failed to delete')           
+            print('Failed to delete')
             print(e)
             self.__logger.add_error(e)
             return None
-            
 
 
 if __name__ == '__main__':
