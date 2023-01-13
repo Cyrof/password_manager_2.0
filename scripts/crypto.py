@@ -6,7 +6,7 @@ import os
 import hashlib
 from logger import Log
 
-class Crypto:
+class Cryptography:
     # class crypto to handle encryption and decryption
     
     def __init__(self):
