@@ -1,8 +1,8 @@
 # python file which handles menu for the password manager
 
-from crypto import Cryptography
-from db import Database
-from logger import Log
+from scripts.crypto import Cryptography
+from scripts.db import Database
+from scripts.logger import Log
 import getpass
 from pyfiglet import Figlet
 from termcolor import colored
