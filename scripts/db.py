@@ -200,4 +200,5 @@ if __name__ == '__main__':
     # db.insert_data('youtube', 'cyrof', 'ps')
     # db.insert_data('google', 'cyrof', 'ps')
     # db.insert_data('pi', 'cyrof', 'ps')
+    # print(db.get_data_by_id(1))
     db.delete_all()
