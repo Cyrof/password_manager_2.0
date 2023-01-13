@@ -1,7 +1,7 @@
 # python file which handles database
 
 import sqlite3
-from logger import Log
+from scripts.logger import Log
 
 # create database table
 create_table = """ CREATE TABLE IF NOT EXISTS psv2 (

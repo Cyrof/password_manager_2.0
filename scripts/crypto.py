@@ -4,7 +4,7 @@ from cryptography.fernet import Fernet
 from dotenv import load_dotenv, set_key, get_key, unset_key
 import os
 import hashlib
-from logger import Log
+from scripts.logger import Log
 
 class Cryptography:
     # class crypto to handle encryption and decryption
