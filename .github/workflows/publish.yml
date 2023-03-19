@@ -12,7 +12,7 @@ jobs:
                      repository: Cyrof/password_manager_2.0
                      token: ${{ secrets.GITHUB_TOKEN }}
                      ref: master
-                    run: | 
+                  - run: | 
                         docker build . --tag ghcr.io/cyrof/psv:latest
                         docker run ghrc.io/cyrof/psv:latest
                         docker push ghrc.io/cyrof/psv:latest
