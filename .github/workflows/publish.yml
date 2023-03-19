@@ -8,11 +8,13 @@ jobs:
             steps:
                   - uses: action/checkout@v2
                   - name: Login to github registry
+                    uses: docker/login-action@v1
                     with:
                      repository: Cyrof/password_manager_2.0
                      token: ${{ secrets.GITHUB_TOKEN }}
                      ref: master
-                  - run: | 
+                  - name: Build psv image
+                    run: | 
                         docker build . --tag ghcr.io/cyrof/psv:latest
                         docker run ghrc.io/cyrof/psv:latest
                         docker push ghrc.io/cyrof/psv:latest
