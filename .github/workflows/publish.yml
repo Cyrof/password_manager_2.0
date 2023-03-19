@@ -23,7 +23,7 @@ name: publish
 on: [push]
 
 jobs:
-  publish-hello-world-image:
+  publish-psv-image:
     runs-on: ubuntu-latest
 
     steps:
@@ -31,6 +31,6 @@ jobs:
 
     - name: Build the hello-world Docker image
       run: |
-        echo $CR_PAT | docker login ghcr.io -u cyrof --password-stdin
+        echo $PSV2_PAT | docker login ghcr.io -u cyrof --password-stdin
       env:
-        CR_PAT: ${{ secrets.CR_PAT }}
+        PSV2_PAT: ${{ secrets.PSV2_PAT }}
