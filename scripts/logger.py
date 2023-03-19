@@ -10,7 +10,7 @@ class Log:
     :logging.basicConfig: set basic configuration
     """
     LVL=logging.INFO
-    FILEPATH="psv2.log"
+    FILEPATH="/main/psv2.log"
     FORMAT="%(asctime)s~%(levelname)s~%(message)s~module:%(module)s"
     logging.basicConfig(level=LVL, filename=FILEPATH, format=FORMAT)
 

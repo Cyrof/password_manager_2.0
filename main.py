@@ -1,5 +1,7 @@
 from scripts.menu import Menu
 from scripts.logger import Log
+import os
+
 
 logger = Log()
 def run():
@@ -12,4 +14,5 @@ def run():
         print("An error occurred" + e)
 
 if __name__ == '__main__':
+    print(os.getcwd())
     run()

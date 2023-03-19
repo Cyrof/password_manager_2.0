@@ -9,6 +9,7 @@ from termcolor import colored
 from prettytable import PrettyTable
 import os
 import time
+import secrets
 
 # menu class for the password manager
 
@@ -135,8 +136,9 @@ class Menu:
             print(colored("2) Update a password", 'cyan'))
             print(colored("3) Retrieve a password", 'cyan'))
             print(colored("4) Delete a password", 'cyan'))
-            print(colored("5) Erase all passwords", 'red'))
-            print(colored("6) Delete all data including master password", 'red'))
+            print(colored("5) Generate a password", 'cyan'))
+            print(colored("6) Erase all passwords", 'red'))
+            print(colored("7) Delete all data including master password", 'red'))
             choice = input(colored("Enter a choice: ", 'white'))
 
             match choice:
@@ -158,10 +160,13 @@ class Menu:
                         "Delete password function running @159-main.py")
                     self.delete_pass()
                 case '5':
+                    self.__logger.add_info("Generate password function running @162")
+                    self.generate_password()
+                case '6':
                     self.__logger.add_info(
                         "Delete all Password functions running @163-main.py")
                     self.delete_all_pass()
-                case '6':
+                case '7':
                     self.__logger.add_info(
                         "Delete all data including master password function running @167-main.py")
                     self.delete_all()
@@ -502,6 +507,31 @@ class Menu:
         else:
             self.__logger.add_error("No data in database @504-main.py")
             print(colored("\nError no data in database", 'red'))
+    
+    def generate_password(self):
+        """ Generates a random password
+        :param:
+        :return:
+        """
+        os.system("clear")
+        print(colored("\n\t*Enter 'exit' at any point to exit.*", 'magenta'))
+        # while loop to prompt user for password length
+        while True:
+            try:
+                ps_len = input('How long do you want the password to be (default is 8): ')
+                if ps_len == "":
+                    ps_len = 8
+                else:
+                    ps_len = int(ps_len)
+                break
+            except:
+                self.__logger.add_error("Error occured in entering length of password @521-menu.py")
+                print(colored("An error occured. Please try again", 'red'))
+                continue
+        
+        rng_ps_gen = secrets.token_urlsafe(int(ps_len))
+        print("The password generated is => ", rng_ps_gen)
+
 
     def delete_all_pass(self):
         """ delete all data from database

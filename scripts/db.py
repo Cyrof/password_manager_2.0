@@ -22,7 +22,7 @@ class Database:
         :self.__conn: connection to the database
         """
         self.__logger = Log()
-        self.__path = r"psv2.db"
+        self.__path = r"/main/psv2.db"
         self.__conn = self.create_connection(self.__path)
 
         if self.__conn is not None:

@@ -13,7 +13,7 @@ class Cryptography:
         """ instance initialization for crypto class 
         """
         self.check_env()
-        self.__envpath = os.path.abspath('psv2.env')
+        self.__envpath = os.path.abspath('/main/psv2.env')
         load_dotenv(self.__envpath)     
         self.__logger = Log()
 
