@@ -17,3 +17,5 @@ COPY . .
 # set command
 CMD [ "python", "./main.py" ]
 # RUN python ./main.py
+
+LABEL org.opencontainers.image.source="https://github.com/cyrof/password_manager_2.0"
