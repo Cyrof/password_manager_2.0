@@ -8,7 +8,7 @@ jobs:
             steps:
                   - uses: action/checkout@v2
                   - name: Login to github registry
-                        run: | 
-                              docker build . --tag ghcr.io/cyrof/psv:latest
-                              docker run ghrc.io/cyrof/psv:latest
-                              docker push ghrc.io/cyrof/psv:latest
+                    run: | 
+                        docker build . --tag ghcr.io/cyrof/psv:latest
+                        docker run ghrc.io/cyrof/psv:latest
+                        docker push ghrc.io/cyrof/psv:latest
