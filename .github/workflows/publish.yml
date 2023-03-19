@@ -10,7 +10,6 @@ steps:
 uses: docker/login-action@v1
 with:
 registry: ghcr.io
-username: ${{ github.actor }}
 - name: Build psv2 docker image
 run: |
       docker build . --tag ghcr.io/cyrof/psv:latest
