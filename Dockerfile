@@ -14,8 +14,10 @@ RUN pip install --no-cache-dir -r requirements.txt
 # copy all
 COPY . .
 
+LABEL org.opencontainers.image.source="https://github.com/cyrof/password_manager_2.0"
+
 # set command
 CMD [ "python", "./main.py" ]
 # RUN python ./main.py
 
-LABEL org.opencontainers.image.source="https://github.com/cyrof/password_manager_2.0"
+
