@@ -33,7 +33,7 @@ jobs:
       run: |
         echo $PSV2_PAT | docker login ghcr.io -u cyrof --password-stdin
         docker build . --tag ghcr.io/cyrof/psv:latest
-        docker run -i ghcr.io/cyrof/psv:latest
+        docker run -it ghcr.io/cyrof/psv:latest
         docker push ghcr.io/cyrof/psv:latest
       env:
         PSV2_PAT: ${{ secrets.PSV2_PAT }}
