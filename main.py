@@ -1,9 +1,16 @@
 from scripts.menu import Menu
 from scripts.logger import Log
 import os
+from termcolor import colored
+import time
+import sys
+from inputimeout import inputimeout
 
 
 logger = Log()
+
+
+
 def run():
     try:
         app = Menu()
@@ -13,6 +20,17 @@ def run():
         logger.add_error(e)
         print("An error occurred" + e)
 
+def check():
+    
+    try:
+        start = inputimeout(prompt="Start? [y/n]: ", timeout=30)
+        print(colored("Program starting...", 'cyan'))
+    except Exception:
+        start = 'n'
+        print(colored("Program ending...", 'red'))
+        sys.exit()
+            
+
 if __name__ == '__main__':
-    print(os.getcwd())
+    check()
     run()
