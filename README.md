@@ -1,5 +1,5 @@
 # Task Manager V2
-### Password manager applciation created with python and deployed to docker
+### Password manager application created with python and deployed to docker
 
 ## Table of Contents
 * [General Info](#general-info)

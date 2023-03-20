@@ -25,8 +25,14 @@ def check():
     try:
         start = inputimeout(prompt="Start? [y/n]: ", timeout=30)
         print(colored("Program starting...", 'cyan'))
+
+        if start == 'n':
+            print(colored("Program ending...", 'red'))
+            sys.exit()
+        else:
+            print(colored("Program starting...", 'cyan'))
+            
     except Exception:
-        start = 'n'
         print(colored("Program ending...", 'red'))
         sys.exit()
             
