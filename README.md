@@ -1,4 +1,4 @@
-# Task Manager V2
+# Password manager V2
 ### Password manager application created with python and deployed to docker
 
 ## Table of Contents
@@ -31,7 +31,7 @@ Password Manager V2 (psv2) requires the following to run:
 ## Installation and Usage
 You can install PSV2 using Git CLI:
 ```console
-$ gh repo clone Cyrof/password_manager_2.0
+gh repo clone Cyrof/password_manager_2.0
 ```
 OR </br>
 You can install PSV2 by downloading the zip file [here](https://github.com/Cyrof/password_manager_2.0/archive/refs/tags/v2.0.zip) or the tar file [here](https://github.com/Cyrof/password_manager_2.0/archive/refs/tags/v2.0.tar.gz).
@@ -39,20 +39,20 @@ You can install PSV2 by downloading the zip file [here](https://github.com/Cyrof
 ### To create the docker image and container for this projects:
 First cd into the program directory
 ```console
-$ cd path/password_manager_2.0
+cd path/password_manager_2.0
 ```
 After which run the run.py script automatically get docker to create the docker image and container for it.
 ```console
-$ python run.py
+python run.py
 ```
 OR 
 ```console
-### python3 run.py
+python3 run.py
 ```
 
 ### Once you run the run.py script, to start using the program:
 ```console
-$ docker start -i psv2
+docker start -i psv2
 ```
 ### What you will expect to see
 Once you run start the program, you should see:
