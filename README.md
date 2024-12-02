@@ -1,3 +1,4 @@
+# This repository is no longer maintained, therefore will be archived.
 # Password manager V2
 ### Password manager application created with python and deployed to docker
 
